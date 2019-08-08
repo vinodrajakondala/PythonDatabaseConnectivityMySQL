@@ -1,0 +1,26 @@
+import pymysql
+try:
+        con=pymysql.connect(host='localhost',user='root',passwd='Linux@123',database='vinod')
+        cur=con.cursor()   #to execute query cursor object is required
+        while True:
+                ename=input('Enter nam: ')
+                esal=float(input('Enter salary: '))
+                eaddr=input('Enter address : ')
+                query="INSERT INTO employee (ename,esal,eaddr) VALUES('%s',%f,'%s')"
+                cur.execute(query %(ename,esal,eaddr))
+                con.commit()
+                print("a rows inserted  successfully")
+                option=input("Do you want to insert another record?[Y/N] :")
+                if option in('N','n'):
+                        break
+
+except pymysql.DataError as e:
+        if con:
+                con.rollback()
+                print("There is issue ",e)
+finally:
+        if cur:
+                cur.close()
+        if con:
+                con.close()
+

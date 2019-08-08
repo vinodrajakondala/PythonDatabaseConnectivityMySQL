@@ -1,0 +1,23 @@
+import pymysql
+try:
+	con=pymysql.connect(host='localhost',user='root',passwd='Linux@123',database='vinod')
+	cur=con.cursor()   #to execute query cursor object is required
+	
+	query="CREATE TABLE employee(eid int,ename varchar(20),esal decimal(6,2),eaddr varchar(45))"
+	#query2="drop table employee")
+	cur.execute(query)
+	print("Table created successfully")
+
+except pymysql.DataError as e:
+	if con:
+		con.rollback()
+		print("There is a problem ",e)
+finally:
+	if cur:
+		cur.close()
+	if con:	
+		con.close()
+
+
+# ALTER TABLE `employee` MODIFY COLUMN `eid` INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT;
+# ALTER TABLE `employee`MODIFY `esal` decimal(10,2)  NULL;

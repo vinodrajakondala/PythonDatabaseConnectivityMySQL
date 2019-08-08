@@ -1,0 +1,73 @@
+1.temporary stoarage systems
+-----------------------------
+	eg pvm,
+
+2.Permanent datbase systems:
+------------------------------
+	File systems,
+	databases,
+
+  File systems:
+  -------------
+	-for large no of students like  1Lakh it is difficult process
+	-suitable for less info
+	-query language support not there ,
+	-seurity issues,prevent duplicate data not availble
+	  data inconssistency problem
+
+  databases:
+  -----------
+	-we can store huge amount of data
+	-QL support,seurity
+	limitation:
+	  -problem holding terabytes of data
+	  -can not support unstructed(vidoess, images,music) and semi structured data(xml files)
+
+ -advanced data storgae bigdata hadoop etc to over come above limitations
+=======================================================================================
+
+PDBC:
+=====
+	models to interact with RDBMS databases
+		cx_oracle
+		pymssql
+		pymysql  or mysql-connector
+	
+	Standard steps to communicate with databases:
+	---------------------------------------------
+	1.import datbase specific module
+          import pymysql
+	  import cx_oracle
+
+	2. EStablish connection betwenne pthhon program and DB
+	  xcon=pymysql.connect(database information)
+	  con=pymysql.connect("'root'@localhost")
+	
+	3.Cursor Object:
+	  cursor=con.cursor()
+	
+	4.Execute SQL query:
+	   cursor.execute(sqlquery) --->single query
+	   cursor.executescript(sqlqueries)--->grop of sql queires,separated by ;
+	   cursor.executemany()   ---> execte parameterized query
+
+ 	5.Fetch the results:
+	   cursor.fetchone()
+	   cursor.fetchmany(n)
+	   cursor.fetchall()
+	
+	6.auto commit like in java noth enabled in python
+	  commit()
+	  rollback()
+	
+	7.	cursor.close()
+		con.close()
+	  
+
+drivers are required to have trnslation beteen databases and programming language
+	   
+    
+
+
+
+

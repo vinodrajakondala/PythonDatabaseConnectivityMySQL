@@ -1,0 +1,15 @@
+#https://linuxize.com/post/how-to-install-pip-on-centos-7/
+#https://linuxize.com/post/how-to-install-python-3-on-centos-7/#installing-python-3-on-centos-7
+
+import pymysql
+con=pymysql.connect('root@localhost')
+if con!=None:
+	print('Connection established successfully')
+else:
+	print("connection not established")
+con.close()   #closes the connection to database
+
+
+
+
+

@@ -1,0 +1,22 @@
+import pymysql
+try:
+        con=pymysql.connect(host='localhost',user='root',passwd='Linux@123',database='vinod')
+        cur=con.cursor()   #to execute query cursor object is required
+
+        query="SELECT * FROM  employee"
+        cur.execute(query)
+        row=cur.fetchone()
+	while row is not None:
+        	print(row)
+		row=cursor.fetchone()
+
+
+except pymysql.DataError as e:
+        if con:
+                con.rollback()
+                print("There is issue ",e)
+finally:
+        if cur:
+                cur.close()
+        if con:
+                con.close()

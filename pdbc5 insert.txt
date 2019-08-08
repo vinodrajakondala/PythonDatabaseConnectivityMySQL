@@ -1,0 +1,18 @@
+import pymysql
+try:
+	con=pymysql.connect(host='localhost',user='root',passwd='Linux@123',database='vinod')
+	cur=con.cursor()   #to execute query cursor object is required
+	
+	query="INSERT INTO employee VALUES(100,"vinodraja",95678.20,"Hyderabd")"
+	cur.execute(query)
+	print("a row inserted created successfully")
+
+except pymysql.DataError as e:
+	if con:
+		con.rollback()
+		print("There is a problem ",e)
+finally:
+	if cur:
+		cur.close()
+	if con:	
+		con.close()

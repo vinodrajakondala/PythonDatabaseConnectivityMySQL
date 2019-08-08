@@ -1,0 +1,27 @@
+import pymysql
+try:
+        con=pymysql.connect(host='localhost',user='root',passwd='Linux@123',database='vinod')
+        cur=con.cursor()   #to execute query cursor object is required
+        incr=float(input("Enter increment : "))
+        decr=float(input("Enter decremrnt : "))
+        Isalrang=float(input("Enter salary rangefor incre : "))
+        Dsalrang=float(input("Enter salary rangefor decre : "))
+        query="UPDATE employee SET esal=esal-%f WHERE esal>%f"
+        cur.execute(query %(decr,Dsalrang))
+        con.commit()
+        query="UPDATE employee SET esal=esal+%f WHERE esal<%f"
+        cur.execute(query %(incr,Isalrang))
+        con.commit()
+        print("rows updated  successfully")
+
+
+except pymysql.DataError as e:
+        if con:
+                con.rollback()
+                print("There is issue ",e)
+finally:
+        if cur:
+                cur.close()
+        if con:
+                con.close()
+

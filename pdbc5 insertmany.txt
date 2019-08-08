@@ -1,0 +1,23 @@
+import pymysql
+try:
+        con=pymysql.connect(host='localhost',user='root',passwd='Linux@123',database='vinod')
+        cur=con.cursor()   #to execute query cursor object is required
+
+        query="INSERT INTO employee (ename,esal,eaddr) VALUES(%s,%s,%s)"
+        records=[('Viajy',583921.45,'Bangalore'),
+                ('Chinni',345667.67,'Pune'),
+                ('Goutham',76584.56,'Chennai')]
+        cur.executemany(query,records)
+        con.commit()
+        print("multiple rows inserted  successfully")
+
+except pymysql.DataError as e:
+        if con:
+                con.rollback()
+                print("There is a problem ",e)
+finally:
+        if cur:
+                cur.close()
+        if con:
+                con.close()
+~
